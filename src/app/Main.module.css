@@ -1,12 +1,13 @@
 .main {
-    height: 100vh;
+    /*height: 100vh;*/
     display: flex;
     flex-direction: column;
-    padding-top: 120px;
+    padding: 120px 0;
     gap: 15px;
 }
 
 .search {
     display: flex;
+    align-items: center;
     gap: 15px;
 }
