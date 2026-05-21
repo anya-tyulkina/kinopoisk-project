@@ -1,0 +1,16 @@
+.bg_container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 6px;
+    position: relative;
+}
