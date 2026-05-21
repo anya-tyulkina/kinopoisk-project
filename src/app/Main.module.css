@@ -2,5 +2,11 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    padding-top: 120px;
+    gap: 15px;
+}
+
+.search {
+    display: flex;
+    gap: 15px;
 }

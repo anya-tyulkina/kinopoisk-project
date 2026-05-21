@@ -14,7 +14,7 @@ export const getTheme = (theme: Theme) => {
                 secondary: theme === "dark" ? "#94A3B8" : "#475569",
             },
             primary: {
-                main: '#FF5733',
+                main: 'rgba(16,50,104,0.92)',
             },
             secondary: {
                 main: '#E0C2FF',
