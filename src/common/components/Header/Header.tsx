@@ -2,6 +2,17 @@ import {changeTheme, selectThemeMode} from '@/app/api';
 import s from './Header.module.css'
 import {useAppDispatch, useAppSelector} from "@/common/hooks";
 import {MaterialUISwitch} from "@/common/switch/CastomSwitch.tsx";
+import {Path} from '@/common/routing';
+import {NavLink} from 'react-router';
+
+const navItems = [
+    {to: Path.Main, label: 'Main'},
+    {to: Path.Category, label: 'Category Movies'},
+    {to: Path.Filtered, label: 'Filtered Movies'},
+    {to: Path.Search, label: 'Search'},
+    {to: Path.Favorites, label: 'Favorites'},
+]
+
 
 export const Header = () => {
 
@@ -15,6 +26,25 @@ export const Header = () => {
     return (
         <div className={s.header}>
             <h3>header</h3>
+            <nav>
+                <ul className={s.list}>
+                    {navItems.map(item => {
+                        return (
+                            <>
+                                <li key={item.to}>
+                                    <NavLink
+                                        to={item.to}
+                                        className={({isActive}) => `link ${isActive ? s.activeLink : ''}`}
+                                    >
+                                        {item.label}
+                                    </NavLink>
+                                </li>
+                                <span className={s.separator}>|</span>
+                            </>
+                        )
+                    })}
+                </ul>
+            </nav>
             <MaterialUISwitch onClick={changeMode}/>
         </div>
     )
