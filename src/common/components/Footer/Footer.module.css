@@ -1,5 +1,6 @@
 .footer {
-    background-color: gray;
-
+    border-top: 1px solid rgba(189, 185, 185, 0.7);
+    background-color: rgba(189, 185, 185, 0.11);
     padding: 16px 24px;
+    text-align: center;
 }
