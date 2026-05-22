@@ -5,11 +5,12 @@ import {useEffect} from "react"
 export const OAuthCallback = () => {
 
     const exchangeToken = async (request_token: string) => {
-        debugger
 
         try {
+            console.log("request_token =", request_token);
             const res = await fetch(
-                "https://api.themoviedb.org/3/authentication/session/new",
+                `https://api.themoviedb.org/3/authentication/session/convert/4`,
+
                 {
                     method: "POST",
                     headers: {
@@ -23,12 +24,8 @@ export const OAuthCallback = () => {
 
             const data = await res.json();
 
-            console.log("SESSION RESULT:", data);
-
             if (data.success) {
                 localStorage.setItem("session_id", data.session_id);
-
-                // редирект в приложение
                 window.location.href = "/";
             } else {
                 console.error("Session creation failed", data);
@@ -45,14 +42,11 @@ export const OAuthCallback = () => {
         const request_token = params.get("request_token");
         const approved = params.get("approved");
 
-        console.log("TOKEN:", request_token);
-        console.log("APPROVED:", approved);
         if (request_token && approved === "true") {
 
             exchangeToken(request_token);
         }
     }, []);
-
 
     return <p>Logging you in...</p>
 }
