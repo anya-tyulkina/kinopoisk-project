@@ -4,7 +4,6 @@ import {useAppDispatch, useAppSelector} from "@/common/hooks";
 import {MaterialUISwitch} from "@/common/switch/CastomSwitch.tsx";
 import {Path} from '@/common/routing';
 import {NavLink} from 'react-router';
-import {useFetchMainImageQuery} from "@/features/MainImageApi.ts";
 import logo from '@/assets/logo.svg'
 import {Button} from '@mui/material';
 import {useLazyFetchAuthTokenQuery} from "@/features/login/api/authApi.ts";
@@ -21,9 +20,9 @@ const navItems = [
 export const Header = () => {
     const [trigger, { data: token }]= useLazyFetchAuthTokenQuery()
 
-    const {data} = useFetchMainImageQuery()
-    console.log(data)
-
+    // const {data} = useFetchMainImageQuery()
+    // console.log(data)
+    //
     console.log(token)
 
     const dispatch = useAppDispatch()

@@ -1,7 +1,7 @@
 export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
     if (req.method === 'OPTIONS') {
         return res.status(200).end();
@@ -9,19 +9,17 @@ export default async function handler(req, res) {
 
     try {
         const response = await fetch(
-            `https://api.themoviedb.org/3/authentication/token/new?api_key=${process.env.TMDB_API_KEY}`
+            'https://api.themoviedb.org/3/authentication/token/new',
+            {
+                headers: {
+                    accept: 'application/json',
+                    Authorization: `Bearer ${process.env.TMDB_ACCESS_TOKEN}`
+                }
+            }
         );
-            // {
-            //     headers: {
-            //         accept: 'application/json',
-            //         Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMjhmY2Y3OWEwNDBmN2QwNzIwYjcyZGUzMzA4NTllZiIsIm5iZiI6MTc3OTQzNjExOC4xMjk5OTk5LCJzdWIiOiI2YTEwMGE1NmJjMWU2ZjEyYWRhMzA4NzEiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.9XrXyZSW39hEPrcpC_XMZMhvOkWV-y0m3oN0gxUoSxg`
-            //     }
-            // }
-        // );
 
         const data = await response.json();
 
-        // 💥 ВАЖНО: проверяем TMDB ответ
         if (!response.ok) {
             return res.status(response.status).json({
                 error: data,

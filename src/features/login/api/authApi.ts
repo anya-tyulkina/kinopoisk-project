@@ -6,7 +6,14 @@ export const authApi = baseApi.injectEndpoints({
             query: () => '/api/tmdb-token',
             providesTags: ['auth']
         }),
+        login: build.mutation<any, any>({
+            query: (payload) => ({
+                url: 'auth/login',
+                method: 'post',
+                body: {...payload, accessTokenTTL: '15m'}
+            }),
+        }),
     })
 })
 
-export const {useLazyFetchAuthTokenQuery} = authApi
+export const {useLazyFetchAuthTokenQuery, useLoginMutation} = authApi
