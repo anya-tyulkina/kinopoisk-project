@@ -5,6 +5,8 @@ import { useEffect } from "react"
 export const OAuthCallback = () => {
 
     const exchangeToken = async (request_token: string) => {
+
+
         try {
             const res = await fetch(
                 "https://api.themoviedb.org/3/authentication/session/new",
@@ -43,6 +45,8 @@ export const OAuthCallback = () => {
         const request_token = params.get("request_token");
         const approved = params.get("approved");
 
+        console.log("TOKEN:", request_token);
+        console.log("APPROVED:", approved);
         if (request_token && approved === "true") {
 
             exchangeToken(request_token);
