@@ -1,11 +1,11 @@
 // Компонент, срабатывающий после успешной OAuth авторизации,
-import { useEffect } from "react"
+import {useEffect} from "react"
 
 // его цель - отправить код обратно в главное окно приложения и закрыть popup
 export const OAuthCallback = () => {
 
     const exchangeToken = async (request_token: string) => {
-
+        debugger
 
         try {
             const res = await fetch(
@@ -17,7 +17,7 @@ export const OAuthCallback = () => {
                         accept: "application/json",
                         Authorization: `Bearer ${import.meta.env.VITE_ACCESS_TOKEN}`,
                     },
-                    body: JSON.stringify({ request_token }),
+                    body: JSON.stringify({request_token}),
                 }
             );
 
