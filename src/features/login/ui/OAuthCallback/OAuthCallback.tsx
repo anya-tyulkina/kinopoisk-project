@@ -16,7 +16,7 @@ export const OAuthCallback = () => {
                     headers: {
                         "Content-Type": "application/json",
                         accept: "application/json",
-                        Authorization: `Bearer ${import.meta.env.VITE_ACCESS_TOKEN}`,
+                        Authorization: `Bearer ${process.env.TMDB_TOKEN}`,
                     },
                     body: JSON.stringify({request_token}),
                 }
