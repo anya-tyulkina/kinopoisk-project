@@ -4,7 +4,6 @@ import {useAppDispatch, useAppSelector} from "@/common/hooks";
 import {MaterialUISwitch} from "@/common/switch/CastomSwitch.tsx";
 import {Path} from '@/common/routing';
 import {NavLink} from 'react-router';
-import logo from '@/assets/logo.svg'
 import {useFetchMainImageQuery} from "@/features/MainImageApi.ts";
 
 const navItems = [
@@ -31,7 +30,7 @@ export const Header = () => {
 
     return (
         <div className={s.header}>
-            <img src={logo} width={'200'} height={'40'} alt="logo"/>
+            {/*<img src={logo} width={'200'} height={'40'} alt="logo"/>*/}
             <nav>
                 <ul className={s.list}>
                     {navItems.map(item => {
