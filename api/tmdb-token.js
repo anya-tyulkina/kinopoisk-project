@@ -13,7 +13,7 @@ export default async function handler(req, res) {
             {
                 headers: {
                     accept: 'application/json',
-                    Authorization: `Bearer ${process.env.TMDB_ACCESS_TOKEN}`
+                    Authorization: `Bearer ${process.env.TMDB_TOKEN}`
                 }
             }
         );

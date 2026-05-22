@@ -5,8 +5,16 @@ export const baseApi = createApi({
     tagTypes: ['imageMain', 'auth'],
     // keepUnusedDataFor: 3600000,
     baseQuery: fetchBaseQuery({
-            baseUrl: 'https://kinopoisk-project.vercel.app',
-        }),
+        baseUrl:'https://kinopoisk-project.vercel.app',
+        // headers: {
+        //     // 'API-KEY': import.meta.env.VITE_API_KEY,
+        // },
+        // prepareHeaders: headers => {
+        //
+        //     headers.set('Authorization', `Bearer ${process.env.TMDB_ACCESS_TOKEN}`)
+        //     return headers
+        // }
+    }),
     endpoints: () => ({}),
     // skipSchemaValidation: process.env.NODE_ENV === 'production',
 })
