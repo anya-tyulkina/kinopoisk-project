@@ -4,6 +4,8 @@ import {useAppDispatch, useAppSelector} from "@/common/hooks";
 import {MaterialUISwitch} from "@/common/switch/CastomSwitch.tsx";
 import {Path} from '@/common/routing';
 import {NavLink} from 'react-router';
+import logo from '@/assets/logo.svg'
+import {useFetchMainImageQuery} from "@/features/MainImageApi.ts";
 
 const navItems = [
     {to: Path.Main, label: 'Main'},
@@ -23,9 +25,13 @@ export const Header = () => {
         dispatch(changeTheme({theme: themeMode === 'light' ? 'dark' : 'light'}))
     }
 
+    const {data} = useFetchMainImageQuery()
+
+    console.log(data)
+
     return (
         <div className={s.header}>
-            <h3>header</h3>
+            <img src={logo} width={'200'} height={'40'} alt="logo"/>
             <nav>
                 <ul className={s.list}>
                     {navItems.map(item => {
