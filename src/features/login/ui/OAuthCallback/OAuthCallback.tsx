@@ -16,7 +16,7 @@ export const OAuthCallback = () => {
                     headers: {
                         "Content-Type": "application/json",
                         accept: "application/json",
-                        Authorization: `Bearer ${process.env.TMDB_TOKEN}`,
+                        Authorization: `Bearer ${import.meta.env.TMDB_TOKEN}`,
                     },
                     body: JSON.stringify({request_token}),
                 }
