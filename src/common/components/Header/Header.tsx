@@ -5,6 +5,9 @@ import {MaterialUISwitch} from "@/common/switch/CastomSwitch.tsx";
 import {Path} from '@/common/routing';
 import {NavLink} from 'react-router';
 import {useFetchMainImageQuery} from "@/features/MainImageApi.ts";
+import logo from '@/assets/logo.svg'
+import {Button} from '@mui/material';
+import {useLazyFetchAuthTokenQuery} from "@/features/login/api/authApi.ts";
 
 const navItems = [
     {to: Path.Main, label: 'Main'},
@@ -16,6 +19,12 @@ const navItems = [
 
 
 export const Header = () => {
+    const [trigger, { data: token }]= useLazyFetchAuthTokenQuery()
+
+    const {data} = useFetchMainImageQuery()
+    console.log(data)
+
+    console.log(token)
 
     const dispatch = useAppDispatch()
     const themeMode = useAppSelector(selectThemeMode)
@@ -24,13 +33,16 @@ export const Header = () => {
         dispatch(changeTheme({theme: themeMode === 'light' ? 'dark' : 'light'}))
     }
 
-    const {data} = useFetchMainImageQuery()
+    const handleLogin = async () => {
+        const result = await trigger().unwrap();
 
-    console.log(data)
+        window.location.href =
+            `https://www.themoviedb.org/authenticate/${result.request_token}?redirect_to=https://kinopoisk-project.vercel.app/callback`;
+    };
 
     return (
         <div className={s.header}>
-            {/*<img src={logo} width={'200'} height={'40'} alt="logo"/>*/}
+            <img src={logo} width={'200'} height={'40'} alt="logo"/>
             <nav>
                 <ul className={s.list}>
                     {navItems.map(item => {
@@ -51,6 +63,7 @@ export const Header = () => {
                 </ul>
             </nav>
             <MaterialUISwitch onClick={changeMode}/>
+            <Button onClick={handleLogin}>login</Button>
         </div>
     )
 }
